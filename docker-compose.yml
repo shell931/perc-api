@@ -1,0 +1,41 @@
+services:
+
+  perc-api:
+    build:
+      context: ./perc-api
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    container_name: perc-api
+    volumes:
+      - ./perc-api/src:/perc-api/code/src
+    ports:
+      - 6000:6000
+    environment:
+      MI_ENV_VARIABLE: "example"
+      PERC_USERS_SVC_SERVICE_HOST: "perc-users:50057"
+    env_file:
+      - ./perc-api/.env
+    networks:
+      - ccp
+
+  perc-users:
+    build:
+      context: ./perc-users
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    container_name: perc-users
+    volumes:
+      - ./perc-users/src:/perc-api/code/src
+    ports:
+      - 50057:50057
+    environment:
+      MI_ENV_VARIABLE: "example"
+      USER_API_URL: "https://jsonplaceholder.typicode.com/users"
+    env_file:
+      - ./perc-api/.env
+    networks:
+      - ccp
+
+networks:
+  ccp:
+    driver: bridge

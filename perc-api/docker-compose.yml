@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  perc-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    container_name: perc-api
+    volumes:
+      - ./src:/code/src
+    ports:
+      - 6000:6000
+    environment:
+      PERC_USERS_SVC_SERVICE_HOST: "perc-users:50057"
+    env_file:
+      - .env
+    networks:
+      - ccp
+
+networks:
+  ccp:
+    external: true
+
+
+    

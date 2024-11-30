@@ -1,0 +1,13 @@
+grpcio-tools
+pytest
+grpc-interceptor
+mongoengine
+python-dotenv
+requests
+grift
+
+pytest 
+pytest-mock 
+requests-mock 
+grpcio 
+grpcio-testing

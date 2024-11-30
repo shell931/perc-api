@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: PercServices API
+  description: API for managing user data.
+  version: 1.0.0
+servers:
+  - url: http://44.196.225.20:6000/api/v1
+paths:
+  /PercServices/SearchUsers:
+    post:
+      summary: Search users based on filters.
+      description: Allows searching users by name, city, and company name, with optional sorting. Note that the order_by sorting parameter is based on the search fields (name, city, company_name) of the same request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Filter by user's name (partial match).
+                  example: "Le"
+                city:
+                  type: string
+                  description: Filter by user's city.
+                  example: ""
+                company_name:
+                  type: string
+                  description: Filter by company name.
+                  example: ""
+                order_by:
+                  type: string
+                  description: Field to sort results by.
+                  example: "city"
+      responses:
+        '200':
+          description: A list of users matching the search criteria.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalUsers:
+                    type: integer
+                    description: Total number of users returned.
+                    example: 5
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        city:
+                          type: string
+                          description: The city where the user resides.
+                          example: "Bartholomebury"
+                        company:
+                          type: string
+                          description: The company the user is associated with.
+                          example: "Yost and Sons"
+                        name:
+                          type: string
+                          description: The name of the user.
+                          example: "Glenna Reichert"

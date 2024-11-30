@@ -1,0 +1,48 @@
+
+openapi: 3.0.0
+info:
+  title: PercServices API
+  version: 1.0.0
+  description: API for managing user data in the services PercServices.
+servers:
+  - url: http://44.196.225.20:6000/api/v1/PercServices
+    description: endpoint
+paths:
+  /GetAllUser:
+    get:
+      summary: Get all users
+      description: Rreturn total users and list of this with basic information.
+      responses:
+        '200':
+          description: User list get successfully..
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalUsers:
+                    type: integer
+                    description: Number total of users.
+                    example: 10
+                  users:
+                    type: array
+                    description: Users list.
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: User name.
+                          example: Leanne Graham
+                        city:
+                          type: string
+                          description: User city.
+                          example: Gwenborough
+                        company:
+                          type: string
+                          description: User company.
+                          example: Romaguera-Crona
+        '400':
+          description: Invalid reques.
+        '500':
+          description: Server internal error.

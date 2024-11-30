@@ -1,0 +1,85 @@
+
+syntax = "proto3";
+import "google/protobuf/struct.proto";
+
+package users;
+
+service PercUsers {
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+    rpc GetAllUser (GetUserAllRequest) returns (GetUserAllResponse);
+    rpc SearchUsers (SearchUsersRequest) returns (SearchUsersResponse);
+}
+
+message Geo{
+  string lat = 1;
+  string lng = 2;  
+}
+
+message Address {
+  string street = 1;
+  string suite = 2;
+  string city = 3;
+  string zipcode = 4;
+  Geo geo = 5;
+}
+
+message Company {
+  string name = 1;
+  string catchPhrase = 2;
+  string bs = 3;
+}
+
+message CreateUserRequest {
+  int32 httpCode = 1;
+  string name = 2;
+  string username = 3;
+  string email = 4;
+  Address address = 11;
+  string phone = 12;
+  string website = 13;
+  Company company = 14;
+}
+
+message CreateUserResponse {
+  int32 httpCode = 1;
+  string name = 2;
+  string username = 3;
+  string email = 4;
+  string messaje = 5;
+}
+
+message GetUserAllRequest{
+
+}
+
+message User {
+  string name = 1;
+  string city = 2;
+  string company = 3;
+  // int32 id = 1;
+  // string name = 2;
+  // string username = 3;
+  // string email = 4;
+  // Address address = 5;
+  // string phone = 6;
+  // string website = 7;
+  // Company company = 8;
+}
+
+message GetUserAllResponse{
+  repeated User users = 1;
+  int32 totalUsers = 2;
+}
+
+
+message SearchUsersRequest {
+  string name = 1;             
+  string city = 2;             
+  string company_name = 3;     
+  string order_by = 4;              
+}
+
+message SearchUsersResponse {
+  repeated User users = 1;  
+  int32 totalUsers = 2;  
+}

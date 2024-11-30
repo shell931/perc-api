@@ -1,0 +1,43 @@
+syntax = "proto3";
+package authentication;
+
+service Authentication {
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc SignUp(SignUpRequest) returns (SignUpResponse);
+    rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
+}
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string token = 1;
+}
+
+message SignUpRequest {
+    string username = 1;
+    string email = 2;
+    string password = 3;
+    bool is_admin = 4;
+}
+
+message SignUpResponse {
+    string token = 1;
+}
+
+message User {
+    string username = 1;
+    string password = 2;
+    string email = 3;
+}
+
+message ValidateTokenRequest {
+    string token = 1;
+}
+
+message ValidateTokenResponse {
+    bool valid = 1;
+    string message = 2;
+}

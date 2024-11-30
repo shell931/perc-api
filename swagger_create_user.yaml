@@ -1,0 +1,120 @@
+
+openapi: 3.0.0
+info:
+  title: PercServices API
+  description: API for managing user data.
+  version: 1.0.0
+servers:
+  - url: http://44.196.225.20:6000/api/v1
+paths:
+  /PercServices/CreateUser:
+    post:
+      summary: Create a new user.
+      description: Creates a new user with the provided details.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the user.
+                  example: "Leanne Graham"
+                username:
+                  type: string
+                  description: Username of the user.
+                  example: "Bret"
+                email:
+                  type: string
+                  description: Email of the user.
+                  example: "Sincere@april.biz"
+                address:
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                      description: Street address.
+                      example: "Kulas Light"
+                    suite:
+                      type: string
+                      description: Suite or apartment number.
+                      example: "Apt. 556"
+                    city:
+                      type: string
+                      description: City name.
+                      example: "Gwenborough"
+                    zipcode:
+                      type: string
+                      description: Zipcode.
+                      example: "92998-3874"
+                    geo:
+                      type: object
+                      properties:
+                        lat:
+                          type: string
+                          description: Latitude.
+                          example: "-37.3159"
+                        lng:
+                          type: string
+                          description: Longitude.
+                          example: "81.1496"
+                phone:
+                  type: string
+                  description: Phone number of the user.
+                  example: "1-770-736-8031 x56442"
+                website:
+                  type: string
+                  description: Website of the user.
+                  example: "hildegard.org"
+                company:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Name of the company.
+                      example: "Romaguera-Crona"
+                    catchPhrase:
+                      type: string
+                      description: Catchphrase of the company.
+                      example: "Multi-layered client-server neural-net"
+                    bs:
+                      type: string
+                      description: Business slogan of the company.
+                      example: "harness real-time e-markets"
+      responses:
+        '201':
+          description: User created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        description: Email of the created user.
+                        example: "Sincere@april.biz"
+                      httpCode:
+                        type: integer
+                        description: HTTP status code.
+                        example: 201
+                      messaje:
+                        type: string
+                        description: Success message.
+                        example: "User created success"
+                      name:
+                        type: string
+                        description: Name of the created user.
+                        example: "Leanne Graham"
+                      username:
+                        type: string
+                        description: Username of the created user.
+                        example: "Bret"
+                  status:
+                    type: integer
+                    description: Overall status of the response.
+                    example: 201

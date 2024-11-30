@@ -1,0 +1,8 @@
+FROM python:3.11
+WORKDIR /code
+COPY . /code
+RUN pip3 install -r requirements.txt
+EXPOSE 6000
+#Usar para desarrollar para que tenga hot reload
+#En prod usamos gunicorn
+CMD ["python", "main.py"]
